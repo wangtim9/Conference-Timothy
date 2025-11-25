@@ -1,12 +1,13 @@
-public class Attendence {
+public class Attendee {
 	int numID;
 	String nameLast;
 	String nameFirst;
-	String companyID;
+	int companyID;
 	int Table;
 	int Seat;
-	public class Attendee {
+	public Attendee(int ID, String Last, String First, int company) {
 		
 	}
 }
+
 

@@ -1,8 +1,6 @@
 import java.io.File;
 
 public class Attendee {
-	public static void main(String[] args) {
-		File ConfAtt = new File ("confGuest.txt");
 	int numID;
 	String nameLast;
 	String nameFirst;
@@ -15,7 +13,24 @@ public class Attendee {
 		nameFirst = First;
 		companyID = CompanyID;
 	}
+
+	public String getLast() {
+		return nameLast;
+	}
+
+	public String getFirst() {
+		return nameFirst;
+	}
+
+	public int getID() {
+		return numID;
+	}
+
+	public int getComp() {
+		return companyID;
+	}
 }
+
 
 
 

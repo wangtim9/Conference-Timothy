@@ -25,7 +25,7 @@ public class Conference {
 			String Last = person[2].getLast;
 			int company = person[3].getComp;
 
-			Attendee a1 = newAttendee(id, First, Last, company);
+			Attendee a1 = new Attendee(id, First, Last, company);
 
 			arr[x] = a1;
 			x++;
@@ -33,14 +33,6 @@ public class Conference {
 
 		scan.close();
 		numCompanies = x;
-	}
-}
-
-public void listAttendees() {
-	for (Attendee a : arr) {
-		if (a != null) {
-			System.out.println(a):
-		}
 	}
 }
 
@@ -52,7 +44,46 @@ public Attendee findAttendee() {
 	}
 	return null;
 }
+
+public void manual() {
+	Scanner scan = new Scanner(System.in);
+
+	System.out.println("Choose an option:");
+	System.out.println("1. Retrieve Guest List");
+	System.out.println("2. Add new attendee");
+	int choice = scan.nextInt();
+	scan.nextLine();
+
+	if (choice == 1) {
+		System.out.println("\nAttendee List");
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != null) {
+				System.out.println(arr[i]);
+			}
+		}
+	else if (choice == 2) {
+		System.out.println("Enter ID: ")
+		int ID = scan.nextInt();
 	
+		System.out.println("Enter first name: ");
+		String first = scan.nextLine();
+
+		System.out.println("Enter last name: ");
+		String last = scan.nextLine();
+
+		System.out.println("Enter company ID: ");
+		int coID = scan.nextInt();
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == null) {
+				arr[i] = new Attendee(ID, first, last, coID);
+				System.out.println("New attendee added.");
+				return;
+			}
+		}
+	}
+		
+
 
 
 

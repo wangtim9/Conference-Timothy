@@ -30,5 +30,9 @@ public class Attendee {
 	public int getComp() {
 		return companyID;
 	}
+	public void toString() {
+		System.out.println("Attendee: " + this.numID + " " + this.nameLast + " " + this.nameFirst + " " + companyID);
+	}
 }
+
 

@@ -30,9 +30,3 @@ public class Attendee {
 		return companyID;
 	}
 }
-
-
-
-
-
-

@@ -25,7 +25,7 @@ public class Conference {
 			String Last = person[2].getLast;
 			int company = person[3].getComp;
 
-			Attendee a1 = new Attendee(id, First, Last, company);
+			Attendee a1 = new Attendee(id, Last, First, company);
 
 			arr[x] = a1;
 			x++;
@@ -66,23 +66,24 @@ public void manual() {
 		int ID = scan.nextInt();
 	
 		System.out.println("Enter first name: ");
-		String first = scan.nextLine();
+		String First = scan.nextLine();
 
 		System.out.println("Enter last name: ");
-		String last = scan.nextLine();
+		String Last = scan.nextLine();
 
 		System.out.println("Enter company ID: ");
 		int coID = scan.nextInt();
 
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == null) {
-				arr[i] = new Attendee(ID, first, last, coID);
+				arr[i] = new Attendee(ID, Last, First, coID);
 				System.out.println("New attendee added.");
 				return;
 			}
 		}
 	}
 		
+
 
 
 

@@ -4,7 +4,7 @@ import java.util.*;
 public class Conference {
 	int numTables=10;
 	int numCompanies;
-	Attendee[] arr = new Attendee[150];
+	Attendee[] arr = new Attendee[150];//create array of 150 attendees
 	int PplPerTable=10;
 
 	public Conference() {
@@ -17,6 +17,7 @@ public class Conference {
             Scanner scan = new Scanner(file);
 
             int x = 0;
+			//loop to establish the objects in array
             while (scan.hasNextLine()) {
                 String data = scan.nextLine();
                 String[] person = data.split(",");
@@ -61,14 +62,14 @@ public class Conference {
 	
 		System.out.println("Enter first name: ");
 		String First = scan.nextLine();
-		scan.nextLine();
+		scan.nextLine();//used to fix error where first an dlast name were both being asked at the same time
 
 		System.out.println("Enter last name: ");
 		String Last = scan.nextLine();
 
 		System.out.println("Enter company ID: ");
 		int coID = scan.nextInt();
-
+		//for loop to put object where there is empty space
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == null) {
 				arr[i] = new Attendee(ID, Last, First, coID);
@@ -78,6 +79,7 @@ public class Conference {
 	}
 	}
 }
+
 
 
 

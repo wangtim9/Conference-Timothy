@@ -20,10 +20,10 @@ public class Conference {
 			String data = scan.nextLine();
 			String[] person = data.split(",");
 
-			int id = person[0].getID;
-			String First = person[1].getFirst;
-			String Last = person[2].getLast;
-			int company = person[3].getComp;
+			int id = person[0];
+			String Last = person[1];
+			String First = person[2];
+			int company = person[3];
 
 			Attendee a1 = new Attendee(id, Last, First, company);
 
@@ -83,6 +83,7 @@ public void manual() {
 		}
 	}
 		
+
 
 
 

@@ -78,11 +78,12 @@ public void manual() {
 			if (arr[i] == null) {
 				arr[i] = new Attendee(ID, Last, First, coID);
 				System.out.println("New attendee added.");
-				return;
 			}
 		}
 	}
+}
 		
+
 
 
 

@@ -7,13 +7,14 @@ public class Attendee {
 	int companyID;
 	int Table;
 	int Seat;
+	//constructor for Attendee object
 	public Attendee(int ID, String Last, String First, int CompanyID) {
 		numID = ID;
 		nameLast = Last;
 		nameFirst = First;
 		companyID = CompanyID;
 	}
-
+//below are all the getters
 	public String getLast() {
 		return nameLast;
 	}
@@ -30,3 +31,4 @@ public class Attendee {
 		return companyID;
 	}
 }
+

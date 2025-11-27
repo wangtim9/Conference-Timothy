@@ -4,6 +4,12 @@ import java.util.*;
 public class Conference {
 	int numTables=10;
 	int numCompanies;
+	String[][] Tables = new String[10][10];
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			Tables[i][j] = "-";
+		}
+	}
 	Attendee[] arr = new Attendee[150];//create array of 150 attendees
 	int PplPerTable=10;
 
@@ -76,9 +82,10 @@ public class Conference {
 			}
 		}
 		System.out.println("New attendee added.");
-	}
+		}
 	}
 }
+
 
 
 

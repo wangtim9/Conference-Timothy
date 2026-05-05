@@ -4,13 +4,8 @@ import java.util.*;
 public class Conference {
 	int numTables=10;
 	int numCompanies;
-	String[][] Tables = new String[10][10];
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-			Tables[i][j] = "-";
-		}
-	}
 	Attendee[] arr = new Attendee[150];//create array of 150 attendees
+	Attendee[][] tables = new Attendee[10][10];
 	int PplPerTable=10;
 
 	public Conference() {
@@ -45,12 +40,27 @@ public class Conference {
         }
 	}
 	
+	//public void placeGuest() {
+	//	for (int i = 0; i < 
+	//}
+	
+	public void prompt() {
+		Scanner scan = new Scanner(System.in);
+		Scanner scan2 = new Scanner(System.in);
+		System.out.println("How many tables will there be?");
+		numTables = scan.nextInt();
+		System.out.println("How many seat for each table?");
+		PplPerTable = scan2.nextInt();
+	}
 	public void manual() {
 	Scanner scan = new Scanner(System.in);
 
 	System.out.println("Choose an option:");
 	System.out.println("1. Retrieve Guest List");
 	System.out.println("2. Add new attendee");
+	System.out.println("3. Retrieve attendees from a company");
+	System.out.println("4. Retrieve list of attendees at a table");
+	System.out.println("5. Retrieve information of a guest");
 	int choice = scan.nextInt();
 	scan.nextLine();
 
@@ -82,10 +92,10 @@ public class Conference {
 			}
 		}
 		System.out.println("New attendee added.");
-		}
+	}
+	manual();
 	}
 }
-
 
 
 

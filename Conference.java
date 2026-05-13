@@ -5,8 +5,8 @@ public class Conference {
 	int numTables=10;
 	int numCompanies;
 	Attendee[] arr = new Attendee[150];//create array of 150 attendees
-	Attendee[][] tables = new Attendee[10][10];
 	int PplPerTable=10;
+	Attendee[][] tables;
 
 	public Conference() {
 		loadData();
@@ -40,19 +40,38 @@ public class Conference {
         }
 	}
 	
-	//public void placeGuest() {
-	//	for (int i = 0; i < 
-	//}
-	
 	public void prompt() {
 		Scanner scan = new Scanner(System.in);
 		Scanner scan2 = new Scanner(System.in);
 		System.out.println("How many tables will there be?");
 		numTables = scan.nextInt();
-		System.out.println("How many seat for each table?");
+		System.out.println("How many seats for each table?");
 		PplPerTable = scan2.nextInt();
+		tables = new Attendee[numTables][PplPerTable];
 	}
+	
+	public void placeGuests() {
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == null) {
+				break;
+			}
+			outer:
+			for (int table = 0; table < numTables; table++) {
+				for (int seat = 0; seat < PplPerTable; seat++) {
+					if (tables[table][seat] == null) {
+						tables[table][seat] = arr[i];
+						break outer;
+					}
+					else if ((tables[table][seat]).getComp() == arr[i].getComp()) {
+						break;
+					}
+				}
+			}
+		}
+	}
+	
 	public void manual() {
+	clearScreen();
 	Scanner scan = new Scanner(System.in);
 
 	System.out.println("Choose an option:");
@@ -60,11 +79,12 @@ public class Conference {
 	System.out.println("2. Add new attendee");
 	System.out.println("3. Retrieve attendees from a company");
 	System.out.println("4. Retrieve list of attendees at a table");
-	System.out.println("5. Retrieve information of a guest");
+	System.out.println("5. Retrieve information about a guest");
 	int choice = scan.nextInt();
 	scan.nextLine();
 
 	if (choice == 1) {
+		clearScreen();
 		System.out.println("\nAttendee List");
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] != null) {
@@ -73,6 +93,7 @@ public class Conference {
 		}
 	}
 	else if (choice == 2) {
+		clearScreen();
 		System.out.println("Enter ID: ");
 		int ID = scan.nextInt();
 	
@@ -93,7 +114,37 @@ public class Conference {
 		}
 		System.out.println("New attendee added.");
 	}
-	manual();
+	else if (choice == 4) {
+		clearScreen();
+		System.out.println("Which table?");
+		int tableID = scan.nextInt();
+		for (int i = 0; i < PplPerTable; i++) {
+			if (tables[tableID][i] != null){
+				System.out.println(tables[tableID][i]);
+			}
+		}
+	}
+	goBack();
+	}
+	
+	public void goBack() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("would you like to go back to the main screen?");
+		String response = scan.nextLine();
+		if (response.equals("yes")) {
+			clearScreen();
+			manual();
+		}
+		else {
+			goBack();
+		}
+	}
+	
+	public static void clearScreen() {
+		// \033[H moves the cursor to the top left
+		// \033[2J clears the entire screen
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 }
 

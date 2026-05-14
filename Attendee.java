@@ -7,20 +7,23 @@ public class Attendee {
 	int companyID;
 	int Table;
 	int Seat;
-	//constructor for Attendee object
 	public Attendee(int ID, String Last, String First, int CompanyID) {
 		numID = ID;
 		nameLast = Last;
 		nameFirst = First;
 		companyID = CompanyID;
 	}
-//below are all the getters
+
 	public String getLast() {
 		return nameLast;
 	}
 
 	public String getFirst() {
 		return nameFirst;
+	}
+	
+	public String getFullName() {
+		return nameFirst + " "  + nameLast;
 	}
 
 	public int getID() {
@@ -30,9 +33,12 @@ public class Attendee {
 	public int getComp() {
 		return companyID;
 	}
-	public void toString() {
-		System.out.println("Attendee: " + this.numID + " " + this.nameLast + " " + this.nameFirst + " " + companyID);
+	
+	public String toString() {
+		return numID + ". " + nameFirst + " " + nameLast + ", " + companyID;
 	}
 }
+
+
 
 

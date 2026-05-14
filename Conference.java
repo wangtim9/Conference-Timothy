@@ -5,8 +5,9 @@ public class Conference {
 	int numTables=10;
 	int numCompanies;
 	Attendee[] arr = new Attendee[150];//create array of 150 attendees
+	ArrayList<String> companies = new ArrayList<String>();
 	int PplPerTable=10;
-	Attendee[][] tables;
+	Attendee[][] tables;//create 2d array of tables
 
 	public Conference() {
 		loadData();
@@ -37,6 +38,17 @@ public class Conference {
 
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: confGuests.txt not found.");
+        }
+        try {
+			File file1 = new File("companies.txt");
+			Scanner scan1 = new Scanner(file1);
+			while(scan1.hasNextLine()) {
+				String Company = scan1.nextLine();
+				companies.add(Company);
+			}
+			scan1.close();
+		}catch (FileNotFoundException e) {
+            System.out.println("ERROR: companies.txt not found.");
         }
 	}
 	
@@ -99,7 +111,7 @@ public class Conference {
 	
 		System.out.println("Enter first name: ");
 		String First = scan.nextLine();
-		scan.nextLine();//used to fix error where first an dlast name were both being asked at the same time
+		scan.nextLine();//used to fix error where first and last name were both being asked at the same time
 
 		System.out.println("Enter last name: ");
 		String Last = scan.nextLine();
@@ -114,13 +126,44 @@ public class Conference {
 		}
 		System.out.println("New attendee added.");
 	}
+	else if (choice == 3) {
+		System.out.println("Enter company ID");
+		int company = scan.nextInt();
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != null && arr[i].getComp() == company) {
+				System.out.println(arr[i]);
+			}
+		}
+	}
 	else if (choice == 4) {
 		clearScreen();
 		System.out.println("Which table?");
-		int tableID = scan.nextInt();
+		int tableID = scan.nextInt() - 1;
 		for (int i = 0; i < PplPerTable; i++) {
 			if (tables[tableID][i] != null){
 				System.out.println(tables[tableID][i]);
+			}
+		}
+	}
+	else if (choice == 5) {
+		System.out.println("Which guest?");
+		String guest = scan.nextLine();
+		String guestCompany = "";
+		outer:
+		for (int table = 0; table < numTables; table++) {
+			for (int seat = 0; seat < PplPerTable; seat++) {
+				if (tables[table][seat] != null && ((tables[table][seat]).getFullName()).equals(guest)) {
+					System.out.println("Table: " + table + 1);
+					System.out.println("Seat: " + seat + 1);
+					for (int i = 0; i < companies.size(); i++) {
+						if((companies.get(i)).contains(Integer.toString((tables[table][seat]).getComp()))) {
+							guestCompany = (companies.get(i)).substring((companies.get(i)).indexOf(",") + 1);
+							break;
+						}
+					}
+					System.out.println("Company: " + guestCompany);
+					break outer;
+				}
 			}
 		}
 	}

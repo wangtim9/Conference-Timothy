@@ -39,7 +39,7 @@ public class Conference {
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: confGuests.txt not found.");
         }
-        try {
+        try {//load in companies
 			File file1 = new File("companies.txt");
 			Scanner scan1 = new Scanner(file1);
 			while(scan1.hasNextLine()) {
@@ -51,7 +51,7 @@ public class Conference {
             System.out.println("ERROR: companies.txt not found.");
         }
 	}
-	
+	//prompt user for how many tables and chairs to use later
 	public void prompt() {
 		Scanner scan = new Scanner(System.in);
 		Scanner scan2 = new Scanner(System.in);
@@ -63,6 +63,7 @@ public class Conference {
 	}
 	
 	public void placeGuests() {
+		//goes by order from top of list to bottom
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == null) {
 				break;
@@ -108,10 +109,11 @@ public class Conference {
 		clearScreen();
 		System.out.println("Enter ID: ");
 		int ID = scan.nextInt();
-	
+		
+		scan.nextLine();//used to fix error where first and last name were both being asked at the same time and to deal with buffer
+		
 		System.out.println("Enter first name: ");
 		String First = scan.nextLine();
-		scan.nextLine();//used to fix error where first and last name were both being asked at the same time
 
 		System.out.println("Enter last name: ");
 		String Last = scan.nextLine();
@@ -122,8 +124,15 @@ public class Conference {
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == null) {
 				arr[i] = new Attendee(ID, Last, First, coID);
+				break;
 			}
 		}
+		for (int a = 0; a < numTables; a++) {
+			for (int b = 0; b < PplPerTable; b++) {
+				tables[a][b] = null;
+			}
+		}
+		placeGuests();
 		System.out.println("New attendee added.");
 	}
 	else if (choice == 3) {
@@ -140,7 +149,7 @@ public class Conference {
 		System.out.println("Which table?");
 		int tableID = scan.nextInt() - 1;
 		for (int i = 0; i < PplPerTable; i++) {
-			if (tables[tableID][i] != null){
+			if (tables[tableID][i] != null){//do not want to use getter on a null
 				System.out.println(tables[tableID][i]);
 			}
 		}
@@ -152,10 +161,10 @@ public class Conference {
 		outer:
 		for (int table = 0; table < numTables; table++) {
 			for (int seat = 0; seat < PplPerTable; seat++) {
-				if (tables[table][seat] != null && ((tables[table][seat]).getFullName()).equals(guest)) {
-					System.out.println("Table: " + table + 1);
-					System.out.println("Seat: " + seat + 1);
-					for (int i = 0; i < companies.size(); i++) {
+				if (tables[table][seat] != null && ((tables[table][seat]).getFullName()).equals(guest)) {//checking if the name matches the input
+					System.out.println("Table: " + (table + 1));
+					System.out.println("Seat: " + (seat + 1));
+					for (int i = 0; i < companies.size(); i++) {//looking for company name based on company ID
 						if((companies.get(i)).contains(Integer.toString((tables[table][seat]).getComp()))) {
 							guestCompany = (companies.get(i)).substring((companies.get(i)).indexOf(",") + 1);
 							break;
@@ -169,7 +178,7 @@ public class Conference {
 	}
 	goBack();
 	}
-	
+	//returns back to options screen
 	public void goBack() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("would you like to go back to the main screen?");
